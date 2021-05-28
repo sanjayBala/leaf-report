@@ -2,7 +2,6 @@ certifi
 click 
 Flask 
 importlib-metadata 
-itsdangerous 
 Jinja2 
 MarkupSafe 
 mkl-fft
@@ -11,8 +10,5 @@ mkl-service
 numpy 
 pandas
 python-dateutil 
-pytz 
-six 
 Werkzeug 
 XlsxWriter 
-zipp 
