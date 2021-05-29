@@ -14,10 +14,10 @@ app.config['UPLOAD_FOLDER'] = './'
 @app.route('/', methods=['GET', 'POST'])
 def home():
     form = UploadForm()
+    message = ''
     if request.method == 'POST':
-        if form.validate_on_submit():
-            print('In 1')
-            file = request.files['file']
+        file = request.files['file']
+        if form.validate_on_submit() and file.filename != '':
             file.save(secure_filename(file.filename))
             print('File Saved')
             folder = os.path.join(app.config['UPLOAD_FOLDER'])
@@ -26,7 +26,10 @@ def home():
             download_url = get_download_url(output_filepath)
             print('download_url ' + str(download_url))
             return download_url
-    return render_template('index.html', form=form)
+        else:
+            message = 'File Required!'
+            flash('File required!')
+    return render_template('index.html', form=form, message=message)
 
 def get_download_url(filename):
     uploads = os.path.join(app.config['UPLOAD_FOLDER'])
