@@ -1,9 +1,11 @@
 from pandas import read_csv, ExcelWriter
-import numpy
+import numpy, os
+from random import randint
 # leaf_rate = input('Enter Leaf Rate: ')
-def generate_report(leaf_rate, filepath):
+def generate_report(leaf_rate, folder ,filepath):
     leaf_rate = int(leaf_rate)
-    output_file = 'LeafPaymentReport.xlsx'
+    # folder = os.path.join(app.config['UPLOAD_FOLDER'])
+    output_file = os.path.join(folder, 'LeafPaymentReport' + str(randint(1,99)) + '.xlsx')
 
     df = read_csv(filepath, sep='|', names=['Serial No', 'Agent', 'Date', 'Weight', 'Grade'])
     # drop columns
