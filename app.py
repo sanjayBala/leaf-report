@@ -30,7 +30,7 @@ def home():
 
 def get_download_url(filename):
     uploads = os.path.join(app.config['UPLOAD_FOLDER'])
-    return send_from_directory(directory=uploads, filename=filename, as_attachment=True)
+    return send_from_directory(uploads, filename, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
