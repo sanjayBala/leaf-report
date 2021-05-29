@@ -1,5 +1,6 @@
-Flask 
-numpy 
+Flask
+gunicorn
+numpy
 pandas
-Werkzeug 
-XlsxWriter 
+Werkzeug
+XlsxWriter
