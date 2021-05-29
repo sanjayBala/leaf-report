@@ -1,10 +1,15 @@
-from pandas import read_csv, ExcelWriter
-# import numpy, os
+import datetime
 from random import randint
+from pandas import read_csv, ExcelWriter
+
+def get_date():
+    x = datetime.datetime.now()
+    return x.strftime('%d-%b-%Y')
 
 def generate_report(leaf_rate, filepath):
-    leaf_rate = int(leaf_rate)
-    output_file = 'LeafPaymentReport' + str(randint(1,99)) + '.xlsx'
+    leaf_rate = float(leaf_rate)
+    date_postfix = get_date()
+    output_file = 'LeafPaymentReport_' + date_postfix + '.xlsx'
 
     df = read_csv(filepath, sep='|', names=['Serial No', 'Agent', 'Date', 'Weight', 'Grade'])
     # drop columns
@@ -17,7 +22,6 @@ def generate_report(leaf_rate, filepath):
     df['Payment Amt'] = df.apply(compute_rate)
     df.loc["Total"] = df.sum()
 
-    # print(df)
     sheetname='Sheet1'
     writer = ExcelWriter(output_file, engine='xlsxwriter')
     df.to_excel(writer, sheet_name=sheetname)  # send df to writer
