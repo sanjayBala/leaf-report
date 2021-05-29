@@ -1,14 +1,5 @@
-certifi
-click 
 Flask 
-importlib-metadata 
-Jinja2 
-MarkupSafe 
-mkl-fft
-mkl-random 
-mkl-service
 numpy 
 pandas
-python-dateutil 
 Werkzeug 
 XlsxWriter 
