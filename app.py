@@ -21,7 +21,7 @@ def home():
             file.save(secure_filename(file.filename))
             print('File Saved')
             folder = os.path.join(app.config['UPLOAD_FOLDER'])
-            output_filepath = generate_report(request.form.get('leaf_rate'),folder , file.filename)
+            output_filepath = generate_report(request.form.get('leaf_rate'), file.filename)
             print('Report Generated ' +  output_filepath)
             download_url = get_download_url(output_filepath)
             print('download_url ' + str(download_url))
