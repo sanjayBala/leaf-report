@@ -18,10 +18,10 @@ def home():
     if request.method == 'POST':
         file = request.files['file']
         if form.validate_on_submit() and file.filename != '':
-            file.save(secure_filename(file.filename))
+            filename = secure_filename(file.filename)
+            file.save(filename)
             print('File Saved')
-            folder = os.path.join(app.config['UPLOAD_FOLDER'])
-            output_filepath = generate_report(request.form.get('leaf_rate'), file.filename)
+            output_filepath = generate_report(request.form.get('leaf_rate'), filename)
             print('Report Generated ' +  output_filepath)
             download_url = get_download_url(output_filepath)
             print('download_url ' + str(download_url))
